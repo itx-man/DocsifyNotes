@@ -8,5 +8,4 @@
 * Java
 
   * [Effective Java 3rd](/books/effective-java-3rd-chinese/_coverpage.md)
-
-    
+  * [Thinking in Java 5rd](/books/thinking-in-java-5rd-chinese/_coverpage.md)

@@ -1,4 +1,4 @@
-![logo](/media/Gakki-s.jpg)
+![logo](/media/home.png)
 
 # docsify
 

@@ -4,38 +4,7 @@ docsify 文档环境配置搭建教程。
 
 -----
 
-## 目录
 
-<!-- vim-markdown-toc GFM -->
-
-* [1. 安装 Node.js 和 npm](#1. 安装 Node.js 和 npm)
-* [2. docsify 介绍](#2. docsify 介绍)
-* [3. 引入 docsify 方式](3.  引入 docsify 方式)
-  * [3.1 手动创建`index.html`并引入docsify文件](#3.1 手动创建`index.html`并引入docsify文件)
-  * [3.2 使用`docsify-cli`来开发](# 使用`docsify-cli`来开发)
-* [4. 关于每个页面和URL路径说明](#4. 关于每个页面和URL路径说明)
-* [5. 侧边栏设置](#5. 侧边栏设置)
-  * [5.1 定制侧边栏](# 5.1定制侧边栏)
-  * [5.2 关于侧边栏`_sidebar.md`文件的说明](#5.2 关于侧边栏`_sidebar.md`文件的说明)
-  * [5.3 显示页面目录(当前页面的标题)](#5.3 显示页面目录(当前页面的标题))
-    * [5.3.1 页面的标题不在侧边栏目录显示](#5.3.1 页面的标题不在侧边栏目录显示)
-* [6. 导航栏配置](6. 导航栏配置)
-  * [6.1 在`index.html`中定义导航栏](#6.1 在`index.html`中定义导航栏)
-  * [6.2 通过配置文件定义导航栏](#6.2 通过配置文件定义导航栏)
-  * [6.3 导航栏嵌套](#6.3 导航栏嵌套)
-* [7. 设置封面](#7. 设置封面)
-  * [7.1 自定义封面背景](#7.1 自定义封面背景)
-  * [7.2 把封面作为封面](#7.2 把封面作为封面)
-  * [7.3 多个封面](#7.3 多个封面)
-* [8. 网站部署到GitHub Pages](#8. 网站部署到GitHub Pages)
-  * [8.1 使用 docsify 的例子](#8.1 使用 docsify 的例子)
-* [9. 一些插件](#9. 一些插件)
-  * [9.1 搜索插件](#9.1 搜索插件)
-  * [9.2 评论插件 Gitalk](#9.2 评论插件 Gitalk)
-  * [9.3 样式插件](#9.3 样式插件)
-* [参考资料](# 参考资料)
-
-<!-- vim-markdown-toc -->
 
 ## 1. 安装 Node.js 和 npm
 
@@ -620,6 +589,116 @@ window.$docsify = {
   }
 };
 ```
+
+
+
+## 7. 网站部署到GitHub Pages
+
+GitHub Pages 支持从三个地方读取文件:
+
+> 1、`master`分支
+> 2、`master`分支下的`docs`目录
+> 3、`gh-pages`分支
+
+> 1、如果你的文档直接是在项目根目录写的，那么可直接把代码推送到master分支上， `GitHub Pages`里选择`master branch`.
+> 2.如果你的文档是在master分支下的`docs/`目录下编写的，那么可直接把代码推送到master分支上，`GitHub Pages`里选择`master branch/docs folder`.
+
+本例子项目是直接在根目录中编写的，所以`GitHub Pages`里选择`master branch`的方式部署。
+
+首先在github网站上创建好仓库，然后终端打开项目目录：
+
+```
+git init
+git add .
+git commit -m 'docsify项目初始化'
+git remote add origin https://github.com/username/docsify.git
+git push --set-upstream origin master
+```
+
+代码推送到github上后，打开github的仓库，选择`Settings` -> `GitHub Pages` -> `master branch` -> `save`。
+
+![docsify](https://itx-man.github.io/img/source/Snipaste_2020-05-24_22-31-55.png)
+
+![docsify](https://itx-man.github.io/img/source/Snipaste_2020-05-24_22-33-00.png)
+
+
+
+#### 7.1 使用docsify的例子
+
+[https://spiritree.github.io/n...](https://spiritree.github.io/note/#/)
+
+[https://ripperhe.com/awesome-...](https://ripperhe.com/awesome-mac-html/#/)
+
+
+
+## 8. 一些插件
+
+### 8.1 搜索插件
+
+全文搜索插件会根据当前页面上的超链接获取文档内容，在 localStorage 内建立文档索引。默认过期时间为一天，当然我们可以自己指定需要缓存的文件列表或者配置过期时间。
+
+```
+<script>
+    window.$docsify = {
+      // 完整配置参数
+      search: {
+        maxAge: 86400000,               // 过期时间，单位毫秒，默认一天
+        paths: [],                      // or 'auto'，匹配文件路径
+        placeholder: 'Type to search',  // 搜索提示框文字， 支持本地化，例子在下面
+        // placeholder: {
+        //   '/zh-cn/': '搜索',
+        //   '/': 'Type to search'
+        // },
+        noData: 'No Results!',          // 找不到结果文字提示，支持本地化，例子在下面
+        // noData: {
+        //   '/zh-cn/': '找不到结果',
+        //   '/': 'No Results'
+        // },
+        depth: 2,                       // 搜索标题的最大程级, 1 - 6
+      }
+    }
+  </script>
+  <!-- 引入搜索模块 -->
+  <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
+```
+
+### 8.2 评论插件Gitalk
+
+Gitalk：一个现代化的，基于Preact和Github Issue的评论系统。
+使用例子：
+
+```
+<link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css">
+<script src="//unpkg.com/docsify/lib/plugins/gitalk.min.js"></script>
+<script src="//unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'Github Application Client ID',
+    clientSecret: 'Github Application Client Secret',
+    repo: 'Github repo',
+    owner: 'Github repo owner',
+    admin: ['Github repo collaborators, only these guys can initialize github issues'],
+    // facebook-like distraction free mode
+    distractionFreeMode: false
+  })
+</script>
+```
+
+Gitalk具体使用教程：[https://segmentfault.com/a/11...](https://segmentfault.com/a/1190000018072952)
+
+docsify其他插件：[https://docsify.js.org/#/zh-c...](https://docsify.js.org/#/zh-cn/plugins)
+
+### 8.3 样式插件
+
+在网上找到一个样式：[https://jhildenbiddle.github....](https://jhildenbiddle.github.io/docsify-themeable/#/customization)
+
+使用方法,在HTML文件中引入：
+
+```php+HTML
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+```
+
+
 
 ## 参考链接
 
