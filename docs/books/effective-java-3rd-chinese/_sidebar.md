@@ -1,7 +1,3 @@
-## ✏️ CS-Notes-PDF
-
-- [CS-Notes-PDF](https://github.com/sjsdfg/CS-Notes-PDF) 
-
 ## 📚 高效 Java 第三版
 
 
